@@ -1,0 +1,47 @@
+Home / Load PostgreSQL Sample Database
+Load PostgreSQL Sample Database
+
+Summary: in this tutorial, we will show you how to load the PostgreSQL sample database into the PostgreSQL database server.
+
+Before going forward with this tutorial, you must have:
+
+PostgreSQL database server installed in your system. If you don’t have, you can follow the step-by-step installing PostgreSQL tutorial.
+The DVD rental database available.
+Creating a new DVD rental database
+
+You need to create a new database in the PostgreSQL database server before loading database schema and data into the database.
+
+First, launch the psql tool.
+
+Second, enter account’s information to login to the PostgreSQL database server.
+
+Third, enter the following statement to create a new dvdrental database.
+
+
+1
+CREATE DATABASE dvdrental;
+PostgreSQL will create a new database named dvdrental.
+
+Load the DVD rental database
+
+First, copy the DVD rental database to a folder e.g., c:\temp\dvdrental.tar
+
+Second, navigate the BIN folder of the PostgreSQL installation folder:
+
+
+1
+C:\>cd C:\Program Files\PostgreSQL\9.2\bin
+Third, use the pg_restore tool to load data into the dvdrental database:
+
+
+1
+>pg_restore -U postgres -d dvdrental C:\temp\dvdrental.tar
+-U postgres specifies the postgres user to login to the PostgreSQL database server. The data stored in the dvdrental.tar will be loaded into the dvdrental database.
+
+Verify the loaded sample database
+
+Open the dvdrental database from object browser panel, you will see the tables in the schema and other database objects as the following picture:
+
+dvdrental database
+
+We have shown you how to load the dvdrental sample database into the PostgreSQL database server for learning and practicing PostgreSQL. Let’s start learning PostgreSQL and have fun!
