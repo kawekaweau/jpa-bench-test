@@ -1,0 +1,199 @@
+{
+Jan 24, 2014 4:27:14 PM org.hibernate.ejb.HibernatePersistence logDeprecation
+WARN: HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+Jan 24, 2014 4:27:14 PM org.hibernate.ejb.HibernatePersistence logDeprecation
+WARN: HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+Jan 24, 2014 4:27:14 PM org.hibernate.ejb.HibernatePersistence logDeprecation
+WARN: HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+Jan 24, 2014 4:27:14 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [
+	name: UnidadePersistencia
+	...]
+Jan 24, 2014 4:27:14 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {4.3.1.Final}
+Jan 24, 2014 4:27:14 PM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000206: hibernate.properties not found
+Jan 24, 2014 4:27:14 PM org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+Jan 24, 2014 4:27:14 PM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.4.Final}
+Jan 24, 2014 4:27:15 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+Jan 24, 2014 4:27:15 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH000401: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/dvdrental]
+Jan 24, 2014 4:27:15 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH000046: Connection properties: {user=postgres, password=****}
+Jan 24, 2014 4:27:15 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH000006: Autocommit mode: false
+Jan 24, 2014 4:27:15 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+Jan 24, 2014 4:27:15 PM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+Jan 24, 2014 4:27:15 PM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+Jan 24, 2014 4:27:15 PM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory <init>
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+
+Tempo Criação EntityManagerFactory: 2188ms
+
+Tempo GenericDAO set EntityManager: 2230ms }
+
+
+i[0]: 
+Tempo Query[Actor.findAll]: 77ms
+Tempo Query[Film.findAll]: 280ms
+Tempo Query[Inventory.findAll]: 1255ms
+Tempo Query[Rental.findAll]: 4954ms
+Tempo Query[Customer.findAll]: 472ms
+Tempo Query[Payment.findAll]: 39111ms
+i[1]: 
+Tempo Query[Actor.findAll]: 8ms
+Tempo Query[Film.findAll]: 27ms
+Tempo Query[Inventory.findAll]: 480ms
+Tempo Query[Rental.findAll]: 3420ms
+Tempo Query[Customer.findAll]: 302ms
+Tempo Query[Payment.findAll]: 39485ms
+i[2]: 
+Tempo Query[Actor.findAll]: 8ms
+Tempo Query[Film.findAll]: 27ms
+Tempo Query[Inventory.findAll]: 442ms
+Tempo Query[Rental.findAll]: 3435ms
+Tempo Query[Customer.findAll]: 418ms
+Tempo Query[Payment.findAll]: 40547ms
+
+
+{
+Jan 27, 2014 8:49:11 AM org.hibernate.ejb.HibernatePersistence logDeprecation
+WARN: HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+Jan 27, 2014 8:49:11 AM org.hibernate.ejb.HibernatePersistence logDeprecation
+WARN: HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+Jan 27, 2014 8:49:11 AM org.hibernate.ejb.HibernatePersistence logDeprecation
+WARN: HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+Jan 27, 2014 8:49:11 AM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH000204: Processing PersistenceUnitInfo [
+	name: UnidadePersistencia
+	...]
+Jan 27, 2014 8:49:11 AM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate Core {4.3.1.Final}
+Jan 27, 2014 8:49:11 AM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000206: hibernate.properties not found
+Jan 27, 2014 8:49:11 AM org.hibernate.cfg.Environment buildBytecodeProvider
+INFO: HHH000021: Bytecode provider name : javassist
+Jan 27, 2014 8:49:12 AM org.hibernate.annotations.common.reflection.java.JavaReflectionManager <clinit>
+INFO: HCANN000001: Hibernate Commons Annotations {4.0.4.Final}
+Jan 27, 2014 8:49:12 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH000402: Using Hibernate built-in connection pool (not for production use!)
+Jan 27, 2014 8:49:12 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH000401: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:5432/dvdrental]
+Jan 27, 2014 8:49:12 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH000046: Connection properties: {user=postgres, password=****}
+Jan 27, 2014 8:49:12 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH000006: Autocommit mode: false
+Jan 27, 2014 8:49:12 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+INFO: HHH000115: Hibernate connection pool size: 20 (min=1)
+Jan 27, 2014 8:49:12 AM org.hibernate.dialect.Dialect <init>
+INFO: HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL9Dialect
+Jan 27, 2014 8:49:12 AM org.hibernate.engine.jdbc.internal.LobCreatorBuilder useContextualLobCreation
+INFO: HHH000424: Disabling contextual LOB creation as createClob() method threw error : java.lang.reflect.InvocationTargetException
+Jan 27, 2014 8:49:13 AM org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory <init>
+INFO: HHH000397: Using ASTQueryTranslatorFactory
+
+Tempo Criação EntityManagerFactory: 3643ms
+
+Tempo GenericDAO set EntityManager: 3687ms }
+
+
+i[0]: 
+Tempo Query[Actor.findAll]: 88ms
+Tempo Query[Film.findAll]: 291ms
+Tempo Query[Inventory.findAll]: 1228ms
+Tempo Query[Rental.findAll]: 4858ms
+Tempo Query[Customer.findAll]: 480ms
+Tempo Query[Payment.findAll]: 40739ms
+i[1]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 27ms
+Tempo Query[Inventory.findAll]: 435ms
+Tempo Query[Rental.findAll]: 3097ms
+Tempo Query[Customer.findAll]: 420ms
+Tempo Query[Payment.findAll]: 38293ms
+i[2]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 24ms
+Tempo Query[Inventory.findAll]: 439ms
+Tempo Query[Rental.findAll]: 3072ms
+Tempo Query[Customer.findAll]: 421ms
+Tempo Query[Payment.findAll]: 42373ms
+i[3]: 
+Tempo Query[Actor.findAll]: 8ms
+Tempo Query[Film.findAll]: 25ms
+Tempo Query[Inventory.findAll]: 440ms
+Tempo Query[Rental.findAll]: 3112ms
+Tempo Query[Customer.findAll]: 418ms
+Tempo Query[Payment.findAll]: 39822ms
+i[4]: 
+Tempo Query[Actor.findAll]: 8ms
+Tempo Query[Film.findAll]: 25ms
+Tempo Query[Inventory.findAll]: 437ms
+Tempo Query[Rental.findAll]: 3146ms
+Tempo Query[Customer.findAll]: 307ms
+Tempo Query[Payment.findAll]: 40436ms
+i[5]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 27ms
+Tempo Query[Inventory.findAll]: 442ms
+Tempo Query[Rental.findAll]: 3088ms
+Tempo Query[Customer.findAll]: 304ms
+Tempo Query[Payment.findAll]: 41653ms
+i[6]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 27ms
+Tempo Query[Inventory.findAll]: 364ms
+Tempo Query[Rental.findAll]: 3131ms
+Tempo Query[Customer.findAll]: 412ms
+Tempo Query[Payment.findAll]: 41502ms
+i[7]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 26ms
+Tempo Query[Inventory.findAll]: 420ms
+Tempo Query[Rental.findAll]: 3070ms
+Tempo Query[Customer.findAll]: 415ms
+Tempo Query[Payment.findAll]: 41773ms
+i[8]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 26ms
+Tempo Query[Inventory.findAll]: 420ms
+Tempo Query[Rental.findAll]: 3282ms
+Tempo Query[Customer.findAll]: 409ms
+Tempo Query[Payment.findAll]: 42528ms
+i[9]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 26ms
+Tempo Query[Inventory.findAll]: 442ms
+Tempo Query[Rental.findAll]: 3081ms
+Tempo Query[Customer.findAll]: 412ms
+Tempo Query[Payment.findAll]: 42052ms
+i[10]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 23ms
+Tempo Query[Inventory.findAll]: 436ms
+Tempo Query[Rental.findAll]: 3417ms
+Tempo Query[Customer.findAll]: 412ms
+Tempo Query[Payment.findAll]: 39888ms
+i[11]: 
+Tempo Query[Actor.findAll]: 7ms
+Tempo Query[Film.findAll]: 26ms
+Tempo Query[Inventory.findAll]: 443ms
+Tempo Query[Rental.findAll]: 3308ms
+Tempo Query[Customer.findAll]: 413ms
+Tempo Query[Payment.findAll]: 38556ms
+i[12]: 
+Tempo Query[Actor.findAll]: 5ms
+Tempo Query[Film.findAll]: 21ms
+Tempo Query[Inventory.findAll]: 417ms
+Tempo Query[Rental.findAll]: 3039ms
+Tempo Query[Customer.findAll]: 408ms
+Tempo Query[Payment.findAll]: 37815ms
+
+
+

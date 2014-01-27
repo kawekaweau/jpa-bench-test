@@ -2,9 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Array;
 import java.sql.Timestamp;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,18 +13,29 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Film.findAll", query="SELECT f FROM Film f")
+@NamedQueries({
+    @NamedQuery(name = "Film.findAll", query = "SELECT f FROM Film f"),
+    @NamedQuery(name = "Film.findByFilmId", query = "SELECT f FROM Film f WHERE f.filmId = :filmId"),
+    @NamedQuery(name = "Film.findByTitle", query = "SELECT f FROM Film f WHERE f.title = :title"),
+    //@NamedQuery(name = "Film.findByReleaseYear", query = "SELECT f FROM Film f WHERE f.releaseYear = :releaseYear"),
+    @NamedQuery(name = "Film.findByRentalDuration", query = "SELECT f FROM Film f WHERE f.rentalDuration = :rentalDuration"),
+    @NamedQuery(name = "Film.findByRentalRate", query = "SELECT f FROM Film f WHERE f.rentalRate = :rentalRate"),
+    @NamedQuery(name = "Film.findByLength", query = "SELECT f FROM Film f WHERE f.length = :length"),
+    @NamedQuery(name = "Film.findByReplacementCost", query = "SELECT f FROM Film f WHERE f.replacementCost = :replacementCost"),
+    @NamedQuery(name = "Film.findByRating", query = "SELECT f FROM Film f WHERE f.rating = :rating"),
+    @NamedQuery(name = "Film.findBySpecialFeatures", query = "SELECT f FROM Film f WHERE f.specialFeatures = :specialFeatures"),
+    @NamedQuery(name = "Film.findByLastUpdate", query = "SELECT f FROM Film f WHERE f.lastUpdate = :lastUpdate")})
 public class Film implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="film_id")
 	private Integer filmId;
 
 	private String description;
 
-	private Object fulltext;
+	private String fulltext;
 
 	@Column(name="last_update")
 	private Timestamp lastUpdate;
@@ -33,8 +44,10 @@ public class Film implements Serializable {
 
 	private String rating;
 
-	@Column(name="release_year")
-	private Object releaseYear;
+	
+	//@Column(name="release_year")
+	//@Temporal(TemporalType.DATE)
+    //private Date releaseYear;
 
 	@Column(name="rental_duration")
 	private Integer rentalDuration;
@@ -46,7 +59,7 @@ public class Film implements Serializable {
 	private BigDecimal replacementCost;
 
 	@Column(name="special_features")
-	private Array specialFeatures;
+	private String specialFeatures;
 
 	private String title;
 
@@ -54,6 +67,14 @@ public class Film implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="language_id")
 	private Language language;
+
+	//bi-directional many-to-one association to FilmActor
+	@OneToMany(mappedBy="film")
+	private List<FilmActor> filmActors;
+
+	//bi-directional many-to-one association to FilmCategory
+	@OneToMany(mappedBy="film")
+	private List<FilmCategory> filmCategories;
 
 	//bi-directional many-to-one association to Inventory
 	@OneToMany(mappedBy="film")
@@ -78,11 +99,11 @@ public class Film implements Serializable {
 		this.description = description;
 	}
 
-	public Object getFulltext() {
+	public String getFulltext() {
 		return this.fulltext;
 	}
 
-	public void setFulltext(Object fulltext) {
+	public void setFulltext(String fulltext) {
 		this.fulltext = fulltext;
 	}
 
@@ -110,14 +131,8 @@ public class Film implements Serializable {
 		this.rating = rating;
 	}
 
-	public Object getReleaseYear() {
-		return this.releaseYear;
-	}
-
-	public void setReleaseYear(Object releaseYear) {
-		this.releaseYear = releaseYear;
-	}
-
+	
+	
 	public Integer getRentalDuration() {
 		return this.rentalDuration;
 	}
@@ -142,11 +157,11 @@ public class Film implements Serializable {
 		this.replacementCost = replacementCost;
 	}
 
-	public Array getSpecialFeatures() {
+	public String getSpecialFeatures() {
 		return this.specialFeatures;
 	}
 
-	public void setSpecialFeatures(Array specialFeatures) {
+	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
 
@@ -164,6 +179,50 @@ public class Film implements Serializable {
 
 	public void setLanguage(Language language) {
 		this.language = language;
+	}
+
+	public List<FilmActor> getFilmActors() {
+		return this.filmActors;
+	}
+
+	public void setFilmActors(List<FilmActor> filmActors) {
+		this.filmActors = filmActors;
+	}
+
+	public FilmActor addFilmActor(FilmActor filmActor) {
+		getFilmActors().add(filmActor);
+		filmActor.setFilm(this);
+
+		return filmActor;
+	}
+
+	public FilmActor removeFilmActor(FilmActor filmActor) {
+		getFilmActors().remove(filmActor);
+		filmActor.setFilm(null);
+
+		return filmActor;
+	}
+
+	public List<FilmCategory> getFilmCategories() {
+		return this.filmCategories;
+	}
+
+	public void setFilmCategories(List<FilmCategory> filmCategories) {
+		this.filmCategories = filmCategories;
+	}
+
+	public FilmCategory addFilmCategory(FilmCategory filmCategory) {
+		getFilmCategories().add(filmCategory);
+		filmCategory.setFilm(this);
+
+		return filmCategory;
+	}
+
+	public FilmCategory removeFilmCategory(FilmCategory filmCategory) {
+		getFilmCategories().remove(filmCategory);
+		filmCategory.setFilm(null);
+
+		return filmCategory;
 	}
 
 	public List<Inventory> getInventories() {

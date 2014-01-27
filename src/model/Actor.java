@@ -1,8 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
+import java.util.List;
 
 
 /**
@@ -10,12 +13,17 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-@NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
+@NamedQueries({
+    @NamedQuery(name = "Actor.findAll", query = "SELECT a FROM Actor a"),
+    @NamedQuery(name = "Actor.findByActorId", query = "SELECT a FROM Actor a WHERE a.actorId = :actorId"),
+    @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
+    @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName"),
+    @NamedQuery(name = "Actor.findByLastUpdate", query = "SELECT a FROM Actor a WHERE a.lastUpdate = :lastUpdate")})
 public class Actor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="actor_id")
 	private Integer actorId;
 
@@ -28,7 +36,18 @@ public class Actor implements Serializable {
 	@Column(name="last_update")
 	private Timestamp lastUpdate;
 
+	//bi-directional many-to-one association to FilmActor
+	@OneToMany(mappedBy="actor")
+	private List<FilmActor> filmActors;
+
 	public Actor() {
+	}
+
+	public Actor(String firstName, String lastName) {
+		// TODO Auto-generated constructor stub
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.lastUpdate = new Timestamp(System.currentTimeMillis());
 	}
 
 	public Integer getActorId() {
@@ -61,6 +80,35 @@ public class Actor implements Serializable {
 
 	public void setLastUpdate(Timestamp lastUpdate) {
 		this.lastUpdate = lastUpdate;
+	}
+
+	public List<FilmActor> getFilmActors() {
+		return this.filmActors;
+	}
+
+	public void setFilmActors(List<FilmActor> filmActors) {
+		this.filmActors = filmActors;
+	}
+
+	public FilmActor addFilmActor(FilmActor filmActor) {
+		getFilmActors().add(filmActor);
+		filmActor.setActor(this);
+
+		return filmActor;
+	}
+
+	public FilmActor removeFilmActor(FilmActor filmActor) {
+		getFilmActors().remove(filmActor);
+		filmActor.setActor(null);
+
+		return filmActor;
+	}
+
+	@Override
+	public String toString() {
+		return "Actor [actorId=" + actorId + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", lastUpdate=" + lastUpdate
+				+ ", filmActors=" + filmActors + "]";
 	}
 
 }

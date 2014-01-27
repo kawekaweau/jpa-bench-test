@@ -1,0 +1,15 @@
+lsb_release -a 
+No LSB modules are available.
+Distributor ID:	LinuxMint
+Description:	Linux Mint 16 Petra
+Release:	16
+Codename:	petra
+
+
+
+ uname -a
+Linux aureliojunior-OptiPlex-780 3.11.0-12-generic #19-Ubuntu SMP Wed Oct 9 16:20:46 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+
+cat /proc/version 
+Linux version 3.11.0-12-generic (buildd@allspice) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu7) ) #19-Ubuntu SMP Wed Oct 9 16:20:46 UTC 2013
+

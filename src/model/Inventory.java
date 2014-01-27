@@ -11,12 +11,15 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Inventory.findAll", query="SELECT i FROM Inventory i")
+@NamedQueries({
+    @NamedQuery(name = "Inventory.findAll", query = "SELECT i FROM Inventory i"),
+    @NamedQuery(name = "Inventory.findByInventoryId", query = "SELECT i FROM Inventory i WHERE i.inventoryId = :inventoryId"),
+    @NamedQuery(name = "Inventory.findByLastUpdate", query = "SELECT i FROM Inventory i WHERE i.lastUpdate = :lastUpdate")})
 public class Inventory implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="inventory_id")
 	private Integer inventoryId;
 

@@ -11,12 +11,17 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Rental.findAll", query="SELECT r FROM Rental r")
+@NamedQueries({
+    @NamedQuery(name = "Rental.findAll", query = "SELECT r FROM Rental r"),
+    @NamedQuery(name = "Rental.findByRentalId", query = "SELECT r FROM Rental r WHERE r.rentalId = :rentalId"),
+    @NamedQuery(name = "Rental.findByRentalDate", query = "SELECT r FROM Rental r WHERE r.rentalDate = :rentalDate"),
+    @NamedQuery(name = "Rental.findByReturnDate", query = "SELECT r FROM Rental r WHERE r.returnDate = :returnDate"),
+    @NamedQuery(name = "Rental.findByLastUpdate", query = "SELECT r FROM Rental r WHERE r.lastUpdate = :lastUpdate")})
 public class Rental implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="rental_id")
 	private Integer rentalId;
 

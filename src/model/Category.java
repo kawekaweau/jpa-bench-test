@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 /**
@@ -10,12 +11,16 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-@NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
+@NamedQueries({
+    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
+    @NamedQuery(name = "Category.findByCategoryId", query = "SELECT c FROM Category c WHERE c.categoryId = :categoryId"),
+    @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
+    @NamedQuery(name = "Category.findByLastUpdate", query = "SELECT c FROM Category c WHERE c.lastUpdate = :lastUpdate")})
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="category_id")
 	private Integer categoryId;
 
@@ -23,6 +28,10 @@ public class Category implements Serializable {
 	private Timestamp lastUpdate;
 
 	private String name;
+
+	//bi-directional many-to-one association to FilmCategory
+	@OneToMany(mappedBy="category")
+	private List<FilmCategory> filmCategories;
 
 	public Category() {
 	}
@@ -49,6 +58,28 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<FilmCategory> getFilmCategories() {
+		return this.filmCategories;
+	}
+
+	public void setFilmCategories(List<FilmCategory> filmCategories) {
+		this.filmCategories = filmCategories;
+	}
+
+	public FilmCategory addFilmCategory(FilmCategory filmCategory) {
+		getFilmCategories().add(filmCategory);
+		filmCategory.setCategory(this);
+
+		return filmCategory;
+	}
+
+	public FilmCategory removeFilmCategory(FilmCategory filmCategory) {
+		getFilmCategories().remove(filmCategory);
+		filmCategory.setCategory(null);
+
+		return filmCategory;
 	}
 
 }

@@ -10,12 +10,15 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-@NamedQuery(name="Store.findAll", query="SELECT s FROM Store s")
+@NamedQueries({
+    @NamedQuery(name = "Store.findAll", query = "SELECT s FROM Store s"),
+    @NamedQuery(name = "Store.findByStoreId", query = "SELECT s FROM Store s WHERE s.storeId = :storeId"),
+    @NamedQuery(name = "Store.findByLastUpdate", query = "SELECT s FROM Store s WHERE s.lastUpdate = :lastUpdate")})
 public class Store implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="store_id")
 	private Integer storeId;
 

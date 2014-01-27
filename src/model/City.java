@@ -11,12 +11,16 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="City.findAll", query="SELECT c FROM City c")
+@NamedQueries({
+    @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c"),
+    @NamedQuery(name = "City.findByCityId", query = "SELECT c FROM City c WHERE c.cityId = :cityId"),
+    @NamedQuery(name = "City.findByCity", query = "SELECT c FROM City c WHERE c.city = :city"),
+    @NamedQuery(name = "City.findByLastUpdate", query = "SELECT c FROM City c WHERE c.lastUpdate = :lastUpdate")})
 public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="city_id")
 	private Integer cityId;
 
@@ -26,7 +30,7 @@ public class City implements Serializable {
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to Address
-	@OneToMany(mappedBy="city")
+	@OneToMany(mappedBy="city", cascade={CascadeType.ALL})
 	private List<Address> addresses;
 
 	//bi-directional many-to-one association to Country
