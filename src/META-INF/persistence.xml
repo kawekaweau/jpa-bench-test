@@ -16,10 +16,6 @@
 		<class>model.Rental</class>
 		<class>model.Staff</class>
 		<class>model.Store</class>
-		<class>model.FilmActor</class>
-		<class>model.FilmActorPK</class>
-		<class>model.FilmCategory</class>
-		<class>model.FilmCategoryPK</class>
 		
 		<properties>
 		 	 

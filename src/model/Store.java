@@ -70,4 +70,10 @@ public class Store implements Serializable {
 		this.staff = staff;
 	}
 
+	@Override
+	public String toString() {
+		return "#Loja[" + storeId + "]: " + address.getPhone()+" - "+address.getCity()
+				+ ", " + staff.getFirstName();
+	}
+	
 }

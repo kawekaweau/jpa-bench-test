@@ -82,4 +82,15 @@ public class Country implements Serializable {
 		return city;
 	}
 
+	@Override
+	public String toString() {
+		String city ="";
+		for(City c:cities){
+			city+=","+c.getCity();
+		}
+		city.replaceFirst(",", " ");
+		return "#Pais[" + countryId + "]: " + country
+				+ ", cidades:{" + city + "}";
+	}
+	
 }

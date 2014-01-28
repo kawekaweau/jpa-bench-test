@@ -1,10 +1,12 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.math.BigDecimal;
-import java.util.Date;
+
 import java.util.List;
 
 
@@ -69,12 +71,15 @@ public class Film implements Serializable {
 	private Language language;
 
 	//bi-directional many-to-one association to FilmActor
-	@OneToMany(mappedBy="film")
-	private List<FilmActor> filmActors;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "film_actor", schema = "PUBLIC", joinColumns = @JoinColumn(name = "FILM_ID"), inverseJoinColumns = @JoinColumn(name = "ACTOR_ID"))
+    
+	private List<Actor> actors;
 
 	//bi-directional many-to-one association to FilmCategory
-	@OneToMany(mappedBy="film")
-	private List<FilmCategory> filmCategories;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "FILM_CATEGORY", schema = "PUBLIC", joinColumns = @JoinColumn(name = "FILM_ID"), inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID"))
+    private List<Category> categories;
 
 	//bi-directional many-to-one association to Inventory
 	@OneToMany(mappedBy="film")
@@ -181,49 +186,24 @@ public class Film implements Serializable {
 		this.language = language;
 	}
 
-	public List<FilmActor> getFilmActors() {
-		return this.filmActors;
+	
+
+	public List<Actor> getActors() {
+		return actors;
 	}
 
-	public void setFilmActors(List<FilmActor> filmActors) {
-		this.filmActors = filmActors;
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 
-	public FilmActor addFilmActor(FilmActor filmActor) {
-		getFilmActors().add(filmActor);
-		filmActor.setFilm(this);
-
-		return filmActor;
+	public List<Category> getCategories() {
+		return categories;
 	}
 
-	public FilmActor removeFilmActor(FilmActor filmActor) {
-		getFilmActors().remove(filmActor);
-		filmActor.setFilm(null);
-
-		return filmActor;
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
-	public List<FilmCategory> getFilmCategories() {
-		return this.filmCategories;
-	}
-
-	public void setFilmCategories(List<FilmCategory> filmCategories) {
-		this.filmCategories = filmCategories;
-	}
-
-	public FilmCategory addFilmCategory(FilmCategory filmCategory) {
-		getFilmCategories().add(filmCategory);
-		filmCategory.setFilm(this);
-
-		return filmCategory;
-	}
-
-	public FilmCategory removeFilmCategory(FilmCategory filmCategory) {
-		getFilmCategories().remove(filmCategory);
-		filmCategory.setFilm(null);
-
-		return filmCategory;
-	}
 
 	public List<Inventory> getInventories() {
 		return this.inventories;
@@ -247,4 +227,18 @@ public class Film implements Serializable {
 		return inventory;
 	}
 
+	@Override
+	public String toString() {
+		String actor = "";
+		for(Actor a:actors){
+			actor+= ", "+a.getFirstName();
+		}
+		actor.replaceFirst(",", "");
+		return "#Film" + filmId + ", " + title+": " 
+			   + language.getName() + "\n actors:" + actor+"\n"
+				//+ ", categories=" + categories + ", inventories=" + inventories
+			
+				;
+	}
+	
 }

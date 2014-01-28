@@ -47,9 +47,12 @@ public class Customer implements Serializable {
 
 	@Column(name="last_update")
 	private Timestamp lastUpdate;
-
-	@Column(name="store_id")
-	private Integer storeId;
+	
+	@ManyToOne
+	@JoinColumn(name="store_id")
+	private Store store;
+//@Column(name="store_id")
+	//private Integer storeId;
 
 	//bi-directional many-to-one association to Address
 	@ManyToOne
@@ -131,12 +134,14 @@ public class Customer implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Integer getStoreId() {
-		return this.storeId;
+	
+
+	public Store getStore() {
+		return store;
 	}
 
-	public void setStoreId(Integer storeId) {
-		this.storeId = storeId;
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 	public Address getAddress() {
@@ -191,4 +196,15 @@ public class Customer implements Serializable {
 		return rental;
 	}
 
+	@Override
+	public String toString() {
+		String pagamentos ="";
+		for(Payment p:payments){
+			pagamentos+=", R$"+p.getAmount()+":"+p.getPaymentDate()+".\n";
+		}
+		return "#Cliente[" + customerId + "]: "
+				+ firstName + " " + lastName + ", " + store
+				+ "\npagamentos:" + pagamentos;
+	}
+	
 }

@@ -30,16 +30,17 @@ public class TesteJPA {
 			
 			runTest(a);
 			/*
-			for(int i=0;i<13;i++){
+			for(int i=0;i<3;i++){
 				System.out.println("i["+i+"]: ");
-				runTestSearchAll("Actor.findAll");//200 registros
-				runTestSearchAll("Film.findAll");//1000 registros (Actor,Category,Language)
-				runTestSearchAll("Inventory.findAll");//4581 registros (Film, Rentals)
-				runTestSearchAll("Rental.findAll");//16044 registros
-				runTestSearchAll("Customer.findAll");//599 registros
-				runTestSearchAll("Payment.findAll");//145996 registros
+				runTestSearchAll("Actor.findAll");     //200 registros
+				runTestSearchAll("Customer.findAll");  //599 registros
+				runTestSearchAll("Film.findAll");      //1000 registros (Actor,Category,Language)
+				runTestSearchAll("Inventory.findAll"); //4581 registros (Film, Rentals)
+				runTestSearchAll("Rental.findAll");    //16044 registros				
+				runTestSearchAll("Payment.findAll");   //145996 registros
 				
 			}//*/
+			printLista(GenericDAO.searchBD("Film.findAll"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,7 +69,7 @@ public class TesteJPA {
 
 	public static void printLista(List<Object> lista) {
 
-		System.out.println("\n\nTodas instancias de " + lista.getClass());
+		System.out.println("\n\nTodas instancias de " + lista.get(0).getClass());
 		for (Object o : lista) {
 			System.out.println(o.toString());
 		}

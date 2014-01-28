@@ -95,4 +95,12 @@ public class Payment implements Serializable {
 		this.staff = staff;
 	}
 
+	@Override
+	public String toString() {
+		
+		return "#Pagamentos[" + paymentId + "]: R$" + amount
+				+ ", " + paymentDate + ", " + customer.getFirstName()
+				+ ", Locação: " + rental.getRentalId() + ", " + staff.getFirstName();
+	}
+	
 }

@@ -225,4 +225,10 @@ public class Staff implements Serializable {
 		return store;
 	}
 
+	@Override
+	public String toString() {
+		return "#staff[" + staffId + "], active=" + active
+				+ ", " + firstName + " " + lastName;
+	}
+	
 }

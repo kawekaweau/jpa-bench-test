@@ -134,4 +134,11 @@ public class Rental implements Serializable {
 		this.staff = staff;
 	}
 
+	@Override
+	public String toString() {
+		return "#Locação[" + rentalId + "]: " + rentalDate
+				+ "-" + returnDate + ", por " + customer.getFirstName()
+				+ ", inventorio: " + inventory + ", " + staff.getFirstName();
+	}
+	
 }

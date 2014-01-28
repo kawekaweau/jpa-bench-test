@@ -25,9 +25,9 @@ public class Inventory implements Serializable {
 
 	@Column(name="last_update")
 	private Timestamp lastUpdate;
-
-	@Column(name="store_id")
-	private Integer storeId;
+	@ManyToOne
+	@JoinColumn(name="store_id")
+	private Store store;
 
 	//bi-directional many-to-one association to Film
 	@ManyToOne
@@ -57,13 +57,7 @@ public class Inventory implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Integer getStoreId() {
-		return this.storeId;
-	}
-
-	public void setStoreId(Integer storeId) {
-		this.storeId = storeId;
-	}
+	
 
 	public Film getFilm() {
 		return this.film;
@@ -94,5 +88,25 @@ public class Inventory implements Serializable {
 
 		return rental;
 	}
+	
+	public Store getStore() {
+		return store;
+	}
 
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
+	@Override
+	public String toString() {
+		String locs ="";
+		for(Rental r:rentals){
+			locs+=", "+r.getRentalId()+" "+r.getCustomer().getFirstName()+
+			" "+r.getRentalDate()+"-"+r.getReturnDate();
+		}
+		return "#Inventorio[" + inventoryId + "]: "
+				+"storeId=" + store.getStoreId() + ", " + film.getTitle()
+				+ "\nlocações:" + locs;
+	}
+	
 }
