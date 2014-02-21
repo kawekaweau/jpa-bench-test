@@ -14,9 +14,9 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name = "Rental.findAll", query = "SELECT r FROM Rental r"),
     @NamedQuery(name = "Rental.findByRentalId", query = "SELECT r FROM Rental r WHERE r.rentalId = :rentalId"),
+    @NamedQuery(name = "rental.Grupo1", query = "SELECT r FROM Rental r WHERE r.rentalId = :id"),
     @NamedQuery(name = "Rental.findByRentalDate", query = "SELECT r FROM Rental r WHERE r.rentalDate = :rentalDate"),
-    @NamedQuery(name = "Rental.findByReturnDate", query = "SELECT r FROM Rental r WHERE r.returnDate = :returnDate"),
-    @NamedQuery(name = "Rental.findByLastUpdate", query = "SELECT r FROM Rental r WHERE r.lastUpdate = :lastUpdate")})
+    @NamedQuery(name = "Rental.findByReturnDate", query = "SELECT r FROM Rental r WHERE r.returnDate = :returnDate")})
 public class Rental implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -134,4 +134,11 @@ public class Rental implements Serializable {
 		this.staff = staff;
 	}
 
+	@Override
+	public String toString() {
+		return "#Locação[" + rentalId + "]: " + rentalDate
+				+ "-" + returnDate + ", por " + customer.getFirstName()
+				+ ", inventorio: " + inventory + ", " + staff.getFirstName();
+	}
+	
 }

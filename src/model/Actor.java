@@ -17,8 +17,8 @@ import java.util.List;
     @NamedQuery(name = "Actor.findAll", query = "SELECT a FROM Actor a"),
     @NamedQuery(name = "Actor.findByActorId", query = "SELECT a FROM Actor a WHERE a.actorId = :actorId"),
     @NamedQuery(name = "Actor.findByFirstName", query = "SELECT a FROM Actor a WHERE a.firstName = :firstName"),
-    @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName"),
-    @NamedQuery(name = "Actor.findByLastUpdate", query = "SELECT a FROM Actor a WHERE a.lastUpdate = :lastUpdate")})
+    @NamedQuery(name = "actor.Grupo1", query = "SELECT a FROM Actor a WHERE a.actorId = :id"),
+    @NamedQuery(name = "Actor.findByLastName", query = "SELECT a FROM Actor a WHERE a.lastName = :lastName")})
 public class Actor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,8 +37,10 @@ public class Actor implements Serializable {
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to FilmActor
-	@OneToMany(mappedBy="actor")
-	private List<FilmActor> filmActors;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "film_actor", schema = "PUBLIC", joinColumns = @JoinColumn(name = "ACTOR_ID"), inverseJoinColumns = @JoinColumn(name = "FILM_ID"))
+    
+	private List<Film> films;
 
 	public Actor() {
 	}
@@ -82,33 +84,28 @@ public class Actor implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public List<FilmActor> getFilmActors() {
-		return this.filmActors;
+	
+
+	
+
+	public List<Film> getFilms() {
+		return films;
 	}
 
-	public void setFilmActors(List<FilmActor> filmActors) {
-		this.filmActors = filmActors;
-	}
-
-	public FilmActor addFilmActor(FilmActor filmActor) {
-		getFilmActors().add(filmActor);
-		filmActor.setActor(this);
-
-		return filmActor;
-	}
-
-	public FilmActor removeFilmActor(FilmActor filmActor) {
-		getFilmActors().remove(filmActor);
-		filmActor.setActor(null);
-
-		return filmActor;
+	public void setFilms(List<Film> films) {
+		this.films = films;
 	}
 
 	@Override
 	public String toString() {
-		return "Actor [actorId=" + actorId + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", lastUpdate=" + lastUpdate
-				+ ", filmActors=" + filmActors + "]";
+		String film ="";
+		for(Film f:films){
+			film+=", "+f.getTitle();
+		}
+		return "#Ator[" + actorId + "] " + firstName
+				+ " " + lastName  
+				+ "\n films:" + film + "\n"
+				;
 	}
 
 }

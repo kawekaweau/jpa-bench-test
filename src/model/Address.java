@@ -1,9 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
-import java.util.List;
+
 
 
 /**
@@ -43,11 +45,11 @@ public class Address implements Serializable {
 	private String postalCode;
 
 	//bi-directional many-to-one association to City
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="city_id")
 	private City city;
 
-	//bi-directional many-to-one association to Customer
+	/*/bi-directional many-to-one association to Customer
 	@OneToMany(mappedBy="address")
 	private List<Customer> customers;
 
@@ -57,9 +59,18 @@ public class Address implements Serializable {
 
 	//bi-directional many-to-one association to Store
 	@OneToMany(mappedBy="address")
-	private List<Store> stores;
+	private List<Store> stores;//*/
 
 	public Address() {
+	}
+	
+	public Address(String address, String district, String phone, City city) {
+		super();
+		this.address = address;
+		this.district = district;
+		this.phone = phone;
+		this.city = city;
+		this.lastUpdate = new Timestamp(System.currentTimeMillis());
 	}
 
 	public Integer getAddressId() {
@@ -125,7 +136,7 @@ public class Address implements Serializable {
 	public void setCity(City city) {
 		this.city = city;
 	}
-
+	/*/
 	public List<Customer> getCustomers() {
 		return this.customers;
 	}
@@ -190,6 +201,12 @@ public class Address implements Serializable {
 		store.setAddress(null);
 
 		return store;
-	}
+	}//*/
 
+	@Override
+	public String toString() {
+		return "#Endereço[" + addressId + "]: " + address
+				+ ". " + district + " - " + city + ".";
+	}
+	
 }

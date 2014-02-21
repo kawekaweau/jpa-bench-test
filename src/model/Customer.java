@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -47,25 +49,43 @@ public class Customer implements Serializable {
 
 	@Column(name="last_update")
 	private Timestamp lastUpdate;
-
-	@Column(name="store_id")
-	private Integer storeId;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="store_id")
+	private Store store;
+//@Column(name="store_id")
+	//private Integer storeId;
 
 	//bi-directional many-to-one association to Address
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name="address_id")
 	private Address address;
 
-	//bi-directional many-to-one association to Payment
-	@OneToMany(mappedBy="customer")
-	private List<Payment> payments;
-
-	//bi-directional many-to-one association to Rental
-	@OneToMany(mappedBy="customer")
-	private List<Rental> rentals;
+//	//bi-directional many-to-one association to Payment
+//	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL)
+//	private List<Payment> payments;
+//
+//	//bi-directional many-to-one association to Rental
+//	@OneToMany(mappedBy="customer",cascade = CascadeType.ALL)
+//	private List<Rental> rentals;
 
 	public Customer() {
 	}
+	
+	
+
+	public Customer(Date createDate, String firstName, String lastName,
+		Timestamp lastUpdate, Store store, Address address) {
+	super();
+	this.createDate = new Timestamp(System.currentTimeMillis());
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.lastUpdate = new Timestamp(System.currentTimeMillis());
+	this.store = store;
+	this.address = address;
+}
+
+
 
 	public Integer getCustomerId() {
 		return this.customerId;
@@ -131,12 +151,14 @@ public class Customer implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public Integer getStoreId() {
-		return this.storeId;
+	
+
+	public Store getStore() {
+		return store;
 	}
 
-	public void setStoreId(Integer storeId) {
-		this.storeId = storeId;
+	public void setStore(Store store) {
+		this.store = store;
 	}
 
 	public Address getAddress() {
@@ -147,48 +169,59 @@ public class Customer implements Serializable {
 		this.address = address;
 	}
 
-	public List<Payment> getPayments() {
-		return this.payments;
+//	public List<Payment> getPayments() {
+//		return this.payments;
+//	}
+//
+//	public void setPayments(List<Payment> payments) {
+//		this.payments = payments;
+//	}
+//
+//	public Payment addPayment(Payment payment) {
+//		getPayments().add(payment);
+//		payment.setCustomer(this);
+//
+//		return payment;
+//	}
+//
+//	public Payment removePayment(Payment payment) {
+//		getPayments().remove(payment);
+//		payment.setCustomer(null);
+//
+//		return payment;
+//	}
+//
+//	public List<Rental> getRentals() {
+//		return this.rentals;
+//	}
+//
+//	public void setRentals(List<Rental> rentals) {
+//		this.rentals = rentals;
+//	}
+//
+//	public Rental addRental(Rental rental) {
+//		getRentals().add(rental);
+//		rental.setCustomer(this);
+//
+//		return rental;
+//	}
+//
+//	public Rental removeRental(Rental rental) {
+//		getRentals().remove(rental);
+//		rental.setCustomer(null);
+//
+//		return rental;
+//	}
+
+	@Override
+	public String toString() {
+		String pagamentos ="";
+//		for(Payment p:payments){
+//			pagamentos+=", R$"+p.getAmount()+":"+p.getPaymentDate()+".\n";
+//		}
+		return "#Cliente[" + customerId + "]: "
+				+ firstName + " " + lastName + ", " + store
+				+ "\npagamentos:" + pagamentos;
 	}
-
-	public void setPayments(List<Payment> payments) {
-		this.payments = payments;
-	}
-
-	public Payment addPayment(Payment payment) {
-		getPayments().add(payment);
-		payment.setCustomer(this);
-
-		return payment;
-	}
-
-	public Payment removePayment(Payment payment) {
-		getPayments().remove(payment);
-		payment.setCustomer(null);
-
-		return payment;
-	}
-
-	public List<Rental> getRentals() {
-		return this.rentals;
-	}
-
-	public void setRentals(List<Rental> rentals) {
-		this.rentals = rentals;
-	}
-
-	public Rental addRental(Rental rental) {
-		getRentals().add(rental);
-		rental.setCustomer(this);
-
-		return rental;
-	}
-
-	public Rental removeRental(Rental rental) {
-		getRentals().remove(rental);
-		rental.setCustomer(null);
-
-		return rental;
-	}
-
+	
 }

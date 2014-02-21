@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -29,11 +31,17 @@ public class Country implements Serializable {
 	@Column(name="last_update")
 	private Timestamp lastUpdate;
 
-	//bi-directional many-to-one association to City
-	@OneToMany(mappedBy="country")
-	private List<City> cities;
+//	//bi-directional many-to-one association to City
+//	@OneToMany(mappedBy="country", cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+//	private List<City> cities;
 
 	public Country() {
+	}
+	
+	public Country(String country) {
+		super();
+		this.country = country;
+		this.lastUpdate = new Timestamp(System.currentTimeMillis());
 	}
 
 	public Integer getCountryId() {
@@ -60,26 +68,37 @@ public class Country implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public List<City> getCities() {
-		return this.cities;
+//	public List<City> getCities() {
+//		return this.cities;
+//	}
+//
+//	public void setCities(List<City> cities) {
+//		this.cities = cities;
+//	}
+//
+//	public City addCity(City city) {
+//		getCities().add(city);
+//		city.setCountry(this);
+//
+//		return city;
+//	}
+//
+//	public City removeCity(City city) {
+//		getCities().remove(city);
+//		city.setCountry(null);
+//
+//		return city;
+//	}
+
+	@Override
+	public String toString() {
+		String city ="";
+//		for(City c:cities){
+//			city+=","+c.getCity();
+//		}
+		//city.substring(0,1).toUpper() + city.substring(1)
+		return "#Pais[" + countryId + "]: " + country
+				+ ", cidades:{" + city + "}";
 	}
-
-	public void setCities(List<City> cities) {
-		this.cities = cities;
-	}
-
-	public City addCity(City city) {
-		getCities().add(city);
-		city.setCountry(this);
-
-		return city;
-	}
-
-	public City removeCity(City city) {
-		getCities().remove(city);
-		city.setCountry(null);
-
-		return city;
-	}
-
+	
 }

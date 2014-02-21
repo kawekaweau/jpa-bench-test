@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -30,10 +32,18 @@ public class Category implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to FilmCategory
-	@OneToMany(mappedBy="category")
-	private List<FilmCategory> filmCategories;
+	@ManyToMany(cascade=CascadeType.ALL)//(fetch = FetchType.LAZY)
+	@JoinTable(name = "FILM_CATEGORY", schema = "PUBLIC", joinColumns = @JoinColumn(name = "CATEGORY_ID"), inverseJoinColumns = @JoinColumn(name = "FILM_ID"))
+    
+	private List<Film> films;
 
 	public Category() {
+	}
+	
+	public Category(Timestamp lastUpdate, String name) {
+		super();
+		this.lastUpdate = new Timestamp(System.currentTimeMillis());
+		this.name = name;
 	}
 
 	public Integer getCategoryId() {
@@ -60,26 +70,24 @@ public class Category implements Serializable {
 		this.name = name;
 	}
 
-	public List<FilmCategory> getFilmCategories() {
-		return this.filmCategories;
+	public List<Film> getFilms() {
+		return films;
 	}
 
-	public void setFilmCategories(List<FilmCategory> filmCategories) {
-		this.filmCategories = filmCategories;
+	public void setFilms(List<Film> films) {
+		this.films = films;
 	}
 
-	public FilmCategory addFilmCategory(FilmCategory filmCategory) {
-		getFilmCategories().add(filmCategory);
-		filmCategory.setCategory(this);
-
-		return filmCategory;
+	@Override
+	public String toString() {
+		String film ="";
+		for(Film f:films){
+			film+=", "+f.getTitle();
+		}
+		return "#Categoria " + categoryId + ": "
+				+ name + ", filmes:" + film + ".";
 	}
 
-	public FilmCategory removeFilmCategory(FilmCategory filmCategory) {
-		getFilmCategories().remove(filmCategory);
-		filmCategory.setCategory(null);
-
-		return filmCategory;
-	}
+	
 
 }

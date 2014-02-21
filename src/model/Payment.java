@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.math.BigDecimal;
 
@@ -15,6 +17,7 @@ import java.math.BigDecimal;
     @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p"),
     @NamedQuery(name = "Payment.findByPaymentId", query = "SELECT p FROM Payment p WHERE p.paymentId = :paymentId"),
     @NamedQuery(name = "Payment.findByAmount", query = "SELECT p FROM Payment p WHERE p.amount = :amount"),
+    @NamedQuery(name = "payment.Grupo1", query = "SELECT p FROM Payment p WHERE p.paymentId = :id"),
     @NamedQuery(name = "Payment.findByPaymentDate", query = "SELECT p FROM Payment p WHERE p.paymentDate = :paymentDate")})
 public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -95,4 +98,12 @@ public class Payment implements Serializable {
 		this.staff = staff;
 	}
 
+	@Override
+	public String toString() {
+		
+		return "#Pagamentos[" + paymentId + "]: R$" + amount
+				+ ", " + paymentDate + ", " + customer.getFirstName()
+				+ ", Locação: " + rental.getRentalId() + ", " + staff.getFirstName();
+	}
+	
 }

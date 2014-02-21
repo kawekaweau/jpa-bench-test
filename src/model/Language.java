@@ -82,4 +82,9 @@ public class Language implements Serializable {
 		return film;
 	}
 
+	@Override
+	public String toString() {
+		return "#Linguagem[" + languageId + "]: " + name;
+	}
+	
 }

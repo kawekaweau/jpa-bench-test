@@ -10,7 +10,7 @@ public class GerenciadorPersistencia {
 		Long inicio = System.currentTimeMillis();
 		emf=Persistence.createEntityManagerFactory("UnidadePersistencia");
 		Long fim = (System.currentTimeMillis() - inicio);
-		System.out.println("\nTempo Criação EntityManagerFactory: " + fim + "ms");
+		System.out.println("\nTempo Criacao EntityManagerFactory: " + fim + "ms");
 	}
 	public static EntityManager getEntityManager(){
 		return emf.createEntityManager();
